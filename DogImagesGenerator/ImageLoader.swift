@@ -9,9 +9,13 @@ import Foundation
 import UIKit
 import Combine
 
-public final class ImageLoader {
-    public static let shared = ImageLoader()
+protocol ImageLoadable {
+    func loadImage(from url: URL, completion: @escaping (Result<UIImage,Error>) -> Void)
+}
 
+public final class ImageLoader: ImageLoadable {
+    
+    public static let shared = ImageLoader()
     private let cache: ImageCacheType
 
     public init(cache: ImageCacheType = ImageCache()) {
@@ -21,14 +25,11 @@ public final class ImageLoader {
     /// Uses standard URLSession with datatask
     public func loadImage(from url: URL, completion: @escaping (Result<UIImage,Error>) -> Void) {
         if let image = cache[url] {
-            completion(.success(image))
+            return completion(.success(image))
         }
         
         return URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else { return }
-            
-            // TODO:
-            // shoud be on main thread
             DispatchQueue.main.async {
                 if let image = UIImage(data: data) {
                     self.cache[url] = image

@@ -9,74 +9,99 @@ import Foundation
 import UIKit
 
 protocol DogGeneratorInput {
-    var output: DogGeneratorOutput? { get set }
-    func getImage()
-    func getImages(number: Int)
-    func getNextImage()
-    func getPreviousImage()
-    
+//    var output: DogGeneratorOutput? { get set }
+    func getImage(completion: @escaping (Result<UIImage, Error>) -> Void)
+    func getImages(number: Int, completion: @escaping (Result<[String], Error>) -> Void)
+    func getNextImage(completion: @escaping (Result<UIImage, Error>) -> Void)
+    func getPreviousImage(completion: @escaping (Result<UIImage, Error>) -> Void)
     // didTapNext() -- increases the current index position of the array of images
     // check whether the current position is in limits (position>0 && position < limit of the array)
     // return possibly with output an indication that the button has to be stopped
 }
 
-protocol DogGeneratorOutput: AnyObject {
-//    func didFetchImages(images: [UIImage])
-    func didGetNextImage(image: UIImage?)
-    func didGetPreviousImage(image: UIImage?)
-}
-
 public final class DogsImagesGenerator {
 
-    private var imageURLs: [String] = []
+    private(set) var imageURLs: [String] = []
+    private(set) var currentIndex: Int = 0
     private let dogService: DogsImagesService
-    private let imageLoader = ImageLoader()
-    weak var output: DogGeneratorOutput?
+    private let imageLoader: ImageLoadable
     
-    init(dogService: DogsImagesService = APIManager()) {
+    init(dogService: DogsImagesService = APIManager(),
+         imageLoader: ImageLoadable = ImageLoader()) {
         self.dogService = dogService
+        self.imageLoader = imageLoader
     }
-    
 }
 
 extension DogsImagesGenerator: DogGeneratorInput {
-    func getImage() {
-        // Gets random image
-    }
     
-    func getImages(number: Int) {
-        // fetches random images
-        dogService.fetchDogImages(number: number) { [weak self] result in
-            switch result {
-            case .success(let images):
-                print(images.message)
-//                self?.output?.didFetchImages(images: success.message)
-                
-                self?.imageURLs = images.message
-                let url = URL(string: images.message.first!)!
-                // Standard
-                self?.imageLoader.loadImage(from: url, completion: { result in
-                    switch result {
-                    case .success(let success):
-                        self?.output?.didGetNextImage(image: success)
-                    case .failure(let failure):
-                        print(failure)
-                    }
-                })
-                self?.imageURLs = images.message
-            case .failure(let failure):
-                print(failure.localizedDescription)
+    func getImage(completion: @escaping (Result<UIImage, Error>) -> Void) {
+        if let urlString = imageURLs[safe: currentIndex],
+           let url = URL(string: urlString) {
+            imageLoader.loadImage(from: url) { result in
+                switch result {
+                case .success(let image):
+                    completion(.success(image))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }
     
-    func getNextImage() {
-        // gets next image from current
-        //Clicking on the “Next” button should randomly get an image of a dog from the library.
+    func getImages(number: Int, completion: @escaping (Result<[String], Error>) -> Void) {
+        dogService.fetchDogImages(number: number) { [weak self] result in
+            switch result {
+            case .success(let images):
+                print(images.message)
+                self?.imageURLs = images.message
+                completion(.success(images.message))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
     }
     
-    func getPreviousImage() {
-        // gets previous image from current
-        //Clicking on “Previous” should get the previous image
+    func getNextImage(completion: @escaping (Result<UIImage, Error>) -> Void) {
+        currentIndex += 1
+        if let urlString = imageURLs[safe: currentIndex],
+           let url = URL(string: urlString) {
+
+            imageLoader.loadImage(from: url) { result in
+                switch result {
+                case .success(let image):
+                    completion(.success(image))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        } else {
+            currentIndex -= 1
+        }
+    }
+    
+    func getPreviousImage(completion: @escaping (Result<UIImage, Error>) -> Void) {
+        currentIndex -= 1
+        if let urlString = imageURLs[safe: currentIndex],
+           let url = URL(string: urlString) {
+
+            imageLoader.loadImage(from: url) { result in
+                switch result {
+                case .success(let image):
+                    completion(.success(image))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        } else {
+            currentIndex += 1
+        }
+        
+    }
+}
+
+extension Collection where Indices.Element == Index {
+    subscript (safe index: Index) -> Iterator.Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }
