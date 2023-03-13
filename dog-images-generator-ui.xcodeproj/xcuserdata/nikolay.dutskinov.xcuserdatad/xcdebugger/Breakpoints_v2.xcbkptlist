@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "66E6E9C5-FCE7-4B3F-BAD2-772A8AB1D97B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5A4E3E0-12A5-4FA5-BE24-0E08B48BCFDA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dog-images-generator-ui/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "didTapOnNext(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4B7E5B4-D251-4EB8-A6E9-CE1A62D99B9C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dog-images-generator-ui/DogImagesGenerator/DogsImagesGenerator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getNextImage(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E693A642-9FD6-48C3-B556-29B1C266BFAF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dog-images-generator-ui/DogImagesGenerator/DogsImagesGenerator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "getImages(number:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E693A642-9FD6-48C3-B556-29B1C266BFAF - 48d155216f3d16d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "dog_images_generator_ui.DogsImagesGenerator.getImages(number: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Swift.String&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "dog-images-generator-ui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolay.dutskinov/Desktop/Work%20projects/Personal%20projects/dog-images-generator-ui/dog-images-generator-ui/DogImagesGenerator/DogsImagesGenerator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "E693A642-9FD6-48C3-B556-29B1C266BFAF - b3265f4ccc3c6a52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;dog_images_generator_ui.DogImages, Swift.Error&gt;) -&gt; () in dog_images_generator_ui.DogsImagesGenerator.getImages(number: Swift.Int, completion: (Swift.Result&lt;Swift.Array&lt;Swift.String&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "dog-images-generator-ui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikolay.dutskinov/Desktop/Work%20projects/Personal%20projects/dog-images-generator-ui/dog-images-generator-ui/DogImagesGenerator/DogsImagesGenerator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA454204-FB0D-474B-A296-87C01FC53F10"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dog-images-generator-ui/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "displayError(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E860E8D6-EEA9-483A-9ADA-4023ED8161FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dog-images-generator-ui/DogImagesGenerator/ImageLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "loadImage(from:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
