@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "dogs-images-generator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/broxigarthered/dogs-images-generator.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "91cdbdfe475f8d50b877efbe17b045994d765a00"
+      }
+    }
+  ],
+  "version" : 2
+}

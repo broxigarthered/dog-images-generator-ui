@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F1512EE29BF836C000BDF36 /* dogs_images_generator.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1512ED29BF836C000BDF36 /* dogs_images_generator.xcframework */; };
-		3F1512EF29BF836C000BDF36 /* dogs_images_generator.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1512ED29BF836C000BDF36 /* dogs_images_generator.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3F28434A29BFE04C00FDD0EA /* dogs-images-generator in Frameworks */ = {isa = PBXBuildFile; productRef = 3F28434929BFE04C00FDD0EA /* dogs-images-generator */; };
 		3F2EF2E929BB989600326E80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2EF2E829BB989600326E80 /* AppDelegate.swift */; };
 		3F2EF2EB29BB989600326E80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2EF2EA29BB989600326E80 /* SceneDelegate.swift */; };
 		3F2EF2ED29BB989600326E80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2EF2EC29BB989600326E80 /* ViewController.swift */; };
@@ -34,22 +33,7 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		3F3BC8CD29BF4147003B0EFB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3F1512EF29BF836C000BDF36 /* dogs_images_generator.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		3F1512ED29BF836C000BDF36 /* dogs_images_generator.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = dogs_images_generator.xcframework; path = "../dogs-images-generator/build/dogs_images_generator.xcframework"; sourceTree = "<group>"; };
 		3F2EF2E529BB989600326E80 /* dog-images-generator-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dog-images-generator-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2EF2E829BB989600326E80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F2EF2EA29BB989600326E80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F1512EE29BF836C000BDF36 /* dogs_images_generator.xcframework in Frameworks */,
+				3F28434A29BFE04C00FDD0EA /* dogs-images-generator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +108,6 @@
 		3F3BC8CA29BF4147003B0EFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F1512ED29BF836C000BDF36 /* dogs_images_generator.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,13 +122,15 @@
 				3F2EF2E129BB989600326E80 /* Sources */,
 				3F2EF2E229BB989600326E80 /* Frameworks */,
 				3F2EF2E329BB989600326E80 /* Resources */,
-				3F3BC8CD29BF4147003B0EFB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "dog-images-generator-ui";
+			packageProductDependencies = (
+				3F28434929BFE04C00FDD0EA /* dogs-images-generator */,
+			);
 			productName = "dog-images-generator-ui";
 			productReference = 3F2EF2E529BB989600326E80 /* dog-images-generator-ui.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +203,9 @@
 				Base,
 			);
 			mainGroup = 3F2EF2DC29BB989600326E80;
+			packageReferences = (
+				3F28434829BFE04C00FDD0EA /* XCRemoteSwiftPackageReference "dogs-images-generator" */,
+			);
 			productRefGroup = 3F2EF2E629BB989600326E80 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -604,6 +592,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F28434829BFE04C00FDD0EA /* XCRemoteSwiftPackageReference "dogs-images-generator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/broxigarthered/dogs-images-generator.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F28434929BFE04C00FDD0EA /* dogs-images-generator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F28434829BFE04C00FDD0EA /* XCRemoteSwiftPackageReference "dogs-images-generator" */;
+			productName = "dogs-images-generator";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F2EF2DD29BB989600326E80 /* Project object */;
 }
