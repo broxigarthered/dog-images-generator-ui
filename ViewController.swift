@@ -38,13 +38,6 @@ class ViewController: UIViewController {
     
     private lazy var dogsImagesGenerator: DogsImagesGenerator = DogsImagesGenerator()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        dogsImagesGenerator?.output = self
-        // TODO: a problem here
-        
-    }
 
 
     @IBAction func didTapOnSubmit(_ sender: UIButton) {
@@ -56,9 +49,8 @@ class ViewController: UIViewController {
             switch result {
             case .success(_):
                 self.getFirstImage()
-            case .failure(let failure):
-                // TODO: Present error
-                print(failure)
+            case .failure(let error):
+                displayError(message: error.localizedDescription)
             }
         }
     }
@@ -66,21 +58,9 @@ class ViewController: UIViewController {
     @IBAction func didTapOnNext(_ sender: UIButton) {
         
         dogsImagesGenerator.getNextImage(completion: { [unowned self] result in
-            
             updateButtonState(currentIndex: self.dogsImagesGenerator.currentIndex,
                               limitIndex: self.dogsImagesGenerator.imageURLs.count)
-            
-//            switch result {
-//            case .success(let image):
-//                self.dogImageView.image = image
-//            case .failure(let error):
-//                // TODO: Display error
-//                print(error)
-////                self.handleImageLoadingError(button: sender, error: error)
-//
             self.displayResult(result: result)
-                
-            
         })
     }
     
@@ -107,24 +87,24 @@ class ViewController: UIViewController {
     private func displayResult(result: Result<UIImage, Error>) {
         switch result {
         case .success(let image):
-            self.dogImageView.image = image
+            dogImageView.image = image
         case .failure(let error):
-//                self?.handleImageLoadingError(button: sender, error: error)
-            // TODO: display the error
-            print("error")
+            displayError(message: error.localizedDescription)
         }
     }
     
     private func displayError(message: String) {
         let alert = UIAlertController(title: "Ops we have a problem!", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     private func validateInput(text: String) {
         if let number = Int(text) {
-            guard number > 0 && number <= 10 else { setInvalidState()
-                return }
+            guard number > 0 && number <= 10 else {
+                setInvalidState()
+                return
+            }
             setValidState()
         } else {
             setInvalidState()
@@ -159,35 +139,4 @@ class ViewController: UIViewController {
             }
         }
     }
-
 }
-
-//extension ViewController: DogGeneratorOutput {
-//    func didLoadImage(image: UIImage?) {
-//        
-//    }
-//    
-//    func didEncounterError(error: String) {
-//        
-//    }
-//    
-//    func didReach(bound: Bound) {
-//        
-//    }
-//    
-//    func shouldDisplayImage(image: UIImage?) {
-//        if let image = image {
-//            self.dogImageView.image = image
-//        } else {
-//            nextButton.isEnabled = false
-//        }
-//    }
-//    
-//    func didGetPreviousImage(image: UIImage?) {
-//        if let image = image {
-//            self.dogImageView.image = image
-//        } else {
-//            previousButton.isEnabled = true
-//        }
-//    }
-//}

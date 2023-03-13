@@ -8,15 +8,19 @@
 import Foundation
 import UIKit
 
-protocol DogGeneratorInput {
-//    var output: DogGeneratorOutput? { get set }
+protocol ImageGenerator {
+    // Returns the first image if there is such and error if there was problem loading
     func getImage(completion: @escaping (Result<UIImage, Error>) -> Void)
+    // Returns an array of images urls depending on the input count
     func getImages(number: Int, completion: @escaping (Result<[String], Error>) -> Void)
+    // Returns an image, starting from the first one. Retruns an error if there is no next image or there was a problem with loading the image
     func getNextImage(completion: @escaping (Result<UIImage, Error>) -> Void)
+    // Returns the previous image if there is such. Returns an error if there is none
     func getPreviousImage(completion: @escaping (Result<UIImage, Error>) -> Void)
-    // didTapNext() -- increases the current index position of the array of images
-    // check whether the current position is in limits (position>0 && position < limit of the array)
-    // return possibly with output an indication that the button has to be stopped
+}
+
+public enum ImageLoadingError: Error {
+    case outOfRange
 }
 
 public final class DogsImagesGenerator {
@@ -33,7 +37,7 @@ public final class DogsImagesGenerator {
     }
 }
 
-extension DogsImagesGenerator: DogGeneratorInput {
+extension DogsImagesGenerator: ImageGenerator {
     
     func getImage(completion: @escaping (Result<UIImage, Error>) -> Void) {
         if let urlString = imageURLs[safe: currentIndex],
@@ -46,6 +50,8 @@ extension DogsImagesGenerator: DogGeneratorInput {
                     completion(.failure(error))
                 }
             }
+        } else {
+            completion(.failure(ImageLoadingError.outOfRange))
         }
     }
     
@@ -66,7 +72,7 @@ extension DogsImagesGenerator: DogGeneratorInput {
         currentIndex += 1
         if let urlString = imageURLs[safe: currentIndex],
            let url = URL(string: urlString) {
-
+            
             imageLoader.loadImage(from: url) { result in
                 switch result {
                 case .success(let image):
@@ -77,6 +83,7 @@ extension DogsImagesGenerator: DogGeneratorInput {
             }
         } else {
             currentIndex -= 1
+            completion(.failure(ImageLoadingError.outOfRange))
         }
     }
     
@@ -84,7 +91,7 @@ extension DogsImagesGenerator: DogGeneratorInput {
         currentIndex -= 1
         if let urlString = imageURLs[safe: currentIndex],
            let url = URL(string: urlString) {
-
+            
             imageLoader.loadImage(from: url) { result in
                 switch result {
                 case .success(let image):
@@ -95,6 +102,7 @@ extension DogsImagesGenerator: DogGeneratorInput {
             }
         } else {
             currentIndex += 1
+            completion(.failure(ImageLoadingError.outOfRange))
         }
         
     }
