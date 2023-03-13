@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import dogs_images_generator
 
 class ViewController: UIViewController {
     
